@@ -1,65 +1,54 @@
 #!/usr/bin/python3
-"""
-Module -> 5-square
-Def class Square with private size & public area
-thus access & update size
-print to stdout the square -> #'s
-"""
+# 0-square.py by Ehoneah Obed
+"""A module that defines a square """
 
 
 class Square:
-    """
-    class Square def
-    Args:
-        size (int): size of a side in square
-    Functions:
-        __init__(self, size)
-        size(self)
-        size(self, value)
-        area(self)
-        print(self)
-    """
+    """A class that represents a square"""
 
     def __init__(self, size=0):
+        """Initializing this square class
+        Args:
+            size: represnets the size of the square defined
+        Raises:
+            TypeError: if size is not integer
+            ValueError: if size is less than zero
         """
-        Init square
-        Attributes:
-            size (int): defaults to 0 if none;
-        """
-        self.size = size
+
+        if not isinstance(size, int):
+            raise TypeError('size must be an integer')
+        if size < 0:
+            raise ValueError('size must be >= 0')
+
+        self.__size = size
 
     @property
     def size(self):
-        """"
-        Getter
-        Return: size
-        """
+        """Retrieves size of square"""
+
         return self.__size
 
     @size.setter
     def size(self, value):
-        """
-        Setter
-        Args:
-            value: set size to value
-        """
-        if type(value) is not int:
-            raise TypeError("size must be an integer")
-        elif value < 0:
-            raise ValueError("size must be >= 0")
-        else:
-            self.__size = value
+        if not isinstance(value, int):
+            raise TypeError('size must be an integer')
+        if value < 0:
+            raise ValueError('size must be >= 0')
+        self.__size = value
 
     def area(self):
         """
-        Calc area of square
-        Returns:
-            area
+        Calculate area of the square
+        Returns: The square of the size
         """
-        return (self.__size)**2
+
+        return (self.__size ** 2)
 
     def my_print(self):
-        """
-        Print square with #'s
-        """
-        print("".join(["#" * self.__size for rows in range(self.__size)]))
+        """print the square in # """
+
+        if self.__size == 0:
+            print()
+
+        for i in range(self.__size):
+            print("#" * self.__size)
